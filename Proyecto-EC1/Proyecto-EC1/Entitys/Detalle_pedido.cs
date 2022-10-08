@@ -16,7 +16,7 @@ namespace Proyecto_EC1.Entitys
         ErrorMessage = "Se tiene que ingresar un pedido"
         )]
         public int Id_pedido { get; set; }
-        
+        [Required]
         public int Id_prod { get; set; }
 
         public string producto { get; set; }
@@ -28,6 +28,12 @@ namespace Proyecto_EC1.Entitys
         public float precio { get; set; }
 
         public float subtotal { get; set; }
+
+        [Required]
+        public Producto Producto { get; set; }
+        [Required]
+        public Pedido Pedido{ get; set; }
+       
 
     }
 }

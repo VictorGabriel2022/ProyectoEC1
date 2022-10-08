@@ -20,17 +20,23 @@ namespace Proyecto_EC1.Entitys
         [Required]
         public string Id_factura { get; set; }
 
-        public DateAndTime fech_ped { get; set; }
+        public int fech_ped { get; set; }
 
-        public DateAndTime hor_ped { get; set; }
+        public int hor_ped { get; set; }
 
-        public DateAndTime hor_entr { get; set; }
+        public int hor_entr { get; set; }
 
         public int num_ped { get; set; }
 
-        public DateAndTime fech_entr { get; set; }
+        public int fech_entr { get; set; }
 
         public string obs { get; set; }
+
+
+        [Required]
+        public Cliente Cliente { get; set; }
+        [Required]
+        public Factura factura { get; set; }
 
 
 

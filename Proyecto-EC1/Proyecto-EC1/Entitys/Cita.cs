@@ -14,7 +14,9 @@ namespace Proyecto_EC1.Entitys
         public string distrito { get; set; }
         [Required]
         public string direccion { get; set; }
-        public DateAndTime fecha { get; set; }
-      
+        public int fecha { get; set; }
+        [Required]
+        public Cliente Cliente { get; set; }
+
     }
 }

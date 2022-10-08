@@ -7,11 +7,9 @@ namespace Proyecto_EC1.Entitys
 {
     public class Producto
     {
-        internal int ID;
-
         //definimos la clave primaria
         [Key]
-        public int ID_PROD { get; set; }
+        public int Id_prod { get; set; }
         //definimos valores no nulos
         [Required]
         //definimos el tamaño del campo
@@ -19,8 +17,7 @@ namespace Proyecto_EC1.Entitys
             maximumLength: 100,
             ErrorMessage = "Se tiene que ingresar un nombre de un producto"
             )]
-        public string ID_CATG { get; set; }
-        [Required]
+    
         public bool NOM_PROD { get; set; }
 
         [Required]
@@ -28,9 +25,11 @@ namespace Proyecto_EC1.Entitys
 
         [Required]
         public bool STOCK_PROD { get; set; }
+        [Required]
+        public Categoria Categoria { get; set; }
 
 
 
-        public List<Categoria> Categoria { get; set; }
+
     }
 }
