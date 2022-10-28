@@ -14,7 +14,6 @@ namespace Proyecto_EC1
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Detalle_pedido> Detalle_pedido { get; set; }
-        public DbSet<Factura> Factura { get; set; }
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
     }

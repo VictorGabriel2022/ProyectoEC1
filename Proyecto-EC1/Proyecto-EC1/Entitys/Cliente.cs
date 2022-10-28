@@ -20,8 +20,7 @@ namespace Proyecto_EC1.Entitys
         [Required]
         public int Id_Usuario { get; set; }
 
-        [Required]
-        public Usuario usuario { get; set; }
+        
 
     }
 }

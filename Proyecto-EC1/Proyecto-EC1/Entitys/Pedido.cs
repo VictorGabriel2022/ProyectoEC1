@@ -35,8 +35,7 @@ namespace Proyecto_EC1.Entitys
 
         [Required]
         public Cliente Cliente { get; set; }
-        [Required]
-        public Factura factura { get; set; }
+      
 
 
 

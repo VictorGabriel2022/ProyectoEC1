@@ -16,6 +16,7 @@ namespace Proyecto_EC1.Entitys
         public string direccion { get; set; }
         public int fecha { get; set; }
         [Required]
+        public int Id_Cliente { get; set; }
         public Cliente Cliente { get; set; }
 
     }

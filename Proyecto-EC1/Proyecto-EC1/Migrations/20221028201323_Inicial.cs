@@ -12,8 +12,8 @@ namespace Proyecto_EC1.Migrations
                 {
                     Id_catg = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NOM_CATG = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    DESP_CATG = table.Column<bool>(type: "bit", nullable: false)
+                    nom_catg = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    desp_catg = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -21,18 +21,21 @@ namespace Proyecto_EC1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Factura",
+                name: "Cliente",
                 columns: table => new
                 {
-                    Id_Factura = table.Column<int>(type: "int", nullable: false)
+                    Id_Cliente = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    descripcion = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    cantidad = table.Column<int>(type: "int", nullable: false),
-                    importe = table.Column<int>(type: "int", nullable: false)
+                    nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fech_nac = table.Column<int>(type: "int", nullable: false),
+                    ruc = table.Column<int>(type: "int", nullable: false),
+                    tip_doc = table.Column<int>(type: "int", nullable: false),
+                    Id_Usuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Factura", x => x.Id_Factura);
+                    table.PrimaryKey("PK_Cliente", x => x.Id_Cliente);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,9 +58,10 @@ namespace Proyecto_EC1.Migrations
                 {
                     Id_prod = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NOM_PROD = table.Column<bool>(type: "bit", maxLength: 100, nullable: false),
-                    PREC_PROD = table.Column<bool>(type: "bit", nullable: false),
-                    STOCK_PROD = table.Column<bool>(type: "bit", nullable: false),
+                    nomb_prod = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    prec_prod = table.Column<float>(type: "real", nullable: false),
+                    stock_prod = table.Column<int>(type: "int", nullable: false),
+                    Id_catg = table.Column<int>(type: "int", nullable: false),
                     CategoriaId_catg = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -72,31 +76,6 @@ namespace Proyecto_EC1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cliente",
-                columns: table => new
-                {
-                    Id_Cliente = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fech_nac = table.Column<int>(type: "int", nullable: false),
-                    ruc = table.Column<int>(type: "int", nullable: false),
-                    tip_doc = table.Column<int>(type: "int", nullable: false),
-                    Id_Usuario = table.Column<int>(type: "int", nullable: false),
-                    usuarioId_Usuario = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cliente", x => x.Id_Cliente);
-                    table.ForeignKey(
-                        name: "FK_Cliente_Usuarios_usuarioId_Usuario",
-                        column: x => x.usuarioId_Usuario,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id_Usuario",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Cita",
                 columns: table => new
                 {
@@ -105,6 +84,7 @@ namespace Proyecto_EC1.Migrations
                     distrito = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fecha = table.Column<int>(type: "int", nullable: false),
+                    Id_Cliente = table.Column<int>(type: "int", nullable: false),
                     ClienteId_Cliente = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -132,8 +112,7 @@ namespace Proyecto_EC1.Migrations
                     num_ped = table.Column<int>(type: "int", nullable: false),
                     fech_entr = table.Column<int>(type: "int", nullable: false),
                     obs = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClienteId_Cliente = table.Column<int>(type: "int", nullable: true),
-                    facturaId_Factura = table.Column<int>(type: "int", nullable: true)
+                    ClienteId_Cliente = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -143,12 +122,6 @@ namespace Proyecto_EC1.Migrations
                         column: x => x.ClienteId_Cliente,
                         principalTable: "Cliente",
                         principalColumn: "Id_Cliente",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Pedido_Factura_facturaId_Factura",
-                        column: x => x.facturaId_Factura,
-                        principalTable: "Factura",
-                        principalColumn: "Id_Factura",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -191,11 +164,6 @@ namespace Proyecto_EC1.Migrations
                 column: "ClienteId_Cliente");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cliente_usuarioId_Usuario",
-                table: "Cliente",
-                column: "usuarioId_Usuario");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Detalle_pedido_PedidoId_pedido",
                 table: "Detalle_pedido",
                 column: "PedidoId_pedido");
@@ -209,11 +177,6 @@ namespace Proyecto_EC1.Migrations
                 name: "IX_Pedido_ClienteId_Cliente",
                 table: "Pedido",
                 column: "ClienteId_Cliente");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pedido_facturaId_Factura",
-                table: "Pedido",
-                column: "facturaId_Factura");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Producto_CategoriaId_catg",
@@ -230,6 +193,9 @@ namespace Proyecto_EC1.Migrations
                 name: "Detalle_pedido");
 
             migrationBuilder.DropTable(
+                name: "Usuarios");
+
+            migrationBuilder.DropTable(
                 name: "Pedido");
 
             migrationBuilder.DropTable(
@@ -239,13 +205,7 @@ namespace Proyecto_EC1.Migrations
                 name: "Cliente");
 
             migrationBuilder.DropTable(
-                name: "Factura");
-
-            migrationBuilder.DropTable(
                 name: "Categoria");
-
-            migrationBuilder.DropTable(
-                name: "Usuarios");
         }
     }
 }

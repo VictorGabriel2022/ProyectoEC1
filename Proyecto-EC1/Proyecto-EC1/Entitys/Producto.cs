@@ -18,14 +18,16 @@ namespace Proyecto_EC1.Entitys
             ErrorMessage = "Se tiene que ingresar un nombre de un producto"
             )]
     
-        public bool NOM_PROD { get; set; }
+        public string nomb_prod { get; set; }
 
         [Required]
-        public bool PREC_PROD { get; set; }
+        public float prec_prod { get; set; }
 
         [Required]
-        public bool STOCK_PROD { get; set; }
+        public int stock_prod { get; set; }
         [Required]
+        public int Id_catg { get; set; }
+
         public Categoria Categoria { get; set; }
 
 

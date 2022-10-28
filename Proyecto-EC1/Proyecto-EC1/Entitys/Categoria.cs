@@ -12,9 +12,9 @@ namespace Proyecto_EC1.Entitys
         //definimos el tamaño del campo
         [StringLength(maximumLength: 100,
             ErrorMessage = "Se tiene que ingresar un nombre de un producto")]
-        public string NOM_CATG { get; set; }
+        public string nom_catg{ get; set; }
         [Required]
-        public bool DESP_CATG { get; set; }
+        public string desp_catg { get; set; }
 
         
     }

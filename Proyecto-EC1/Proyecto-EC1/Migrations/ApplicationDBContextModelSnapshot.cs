@@ -26,10 +26,11 @@ namespace Proyecto_EC1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("DESP_CATG")
-                        .HasColumnType("bit");
+                    b.Property<string>("desp_catg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NOM_CATG")
+                    b.Property<string>("nom_catg")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -47,6 +48,9 @@ namespace Proyecto_EC1.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("ClienteId_Cliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_Cliente")
                         .HasColumnType("int");
 
                     b.Property<string>("direccion")
@@ -96,12 +100,7 @@ namespace Proyecto_EC1.Migrations
                     b.Property<int>("tip_doc")
                         .HasColumnType("int");
 
-                    b.Property<int?>("usuarioId_Usuario")
-                        .HasColumnType("int");
-
                     b.HasKey("Id_Cliente");
-
-                    b.HasIndex("usuarioId_Usuario");
 
                     b.ToTable("Cliente");
                 });
@@ -150,29 +149,6 @@ namespace Proyecto_EC1.Migrations
                     b.ToTable("Detalle_pedido");
                 });
 
-            modelBuilder.Entity("Proyecto_EC1.Entitys.Factura", b =>
-                {
-                    b.Property<int>("Id_Factura")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("cantidad")
-                        .HasColumnType("int");
-
-                    b.Property<string>("descripcion")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("importe")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id_Factura");
-
-                    b.ToTable("Factura");
-                });
-
             modelBuilder.Entity("Proyecto_EC1.Entitys.Pedido", b =>
                 {
                     b.Property<int>("Id_pedido")
@@ -191,9 +167,6 @@ namespace Proyecto_EC1.Migrations
                     b.Property<string>("Id_factura")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("facturaId_Factura")
-                        .HasColumnType("int");
 
                     b.Property<int>("fech_entr")
                         .HasColumnType("int");
@@ -217,8 +190,6 @@ namespace Proyecto_EC1.Migrations
 
                     b.HasIndex("ClienteId_Cliente");
 
-                    b.HasIndex("facturaId_Factura");
-
                     b.ToTable("Pedido");
                 });
 
@@ -232,15 +203,19 @@ namespace Proyecto_EC1.Migrations
                     b.Property<int?>("CategoriaId_catg")
                         .HasColumnType("int");
 
-                    b.Property<bool>("NOM_PROD")
+                    b.Property<int>("Id_catg")
+                        .HasColumnType("int");
+
+                    b.Property<string>("nomb_prod")
+                        .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("bit");
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("PREC_PROD")
-                        .HasColumnType("bit");
+                    b.Property<float>("prec_prod")
+                        .HasColumnType("real");
 
-                    b.Property<bool>("STOCK_PROD")
-                        .HasColumnType("bit");
+                    b.Property<int>("stock_prod")
+                        .HasColumnType("int");
 
                     b.HasKey("Id_prod");
 
@@ -279,15 +254,6 @@ namespace Proyecto_EC1.Migrations
                     b.Navigation("Cliente");
                 });
 
-            modelBuilder.Entity("Proyecto_EC1.Entitys.Cliente", b =>
-                {
-                    b.HasOne("Proyecto_EC1.Entitys.Usuario", "usuario")
-                        .WithMany()
-                        .HasForeignKey("usuarioId_Usuario");
-
-                    b.Navigation("usuario");
-                });
-
             modelBuilder.Entity("Proyecto_EC1.Entitys.Detalle_pedido", b =>
                 {
                     b.HasOne("Proyecto_EC1.Entitys.Pedido", "Pedido")
@@ -309,13 +275,7 @@ namespace Proyecto_EC1.Migrations
                         .WithMany()
                         .HasForeignKey("ClienteId_Cliente");
 
-                    b.HasOne("Proyecto_EC1.Entitys.Factura", "factura")
-                        .WithMany()
-                        .HasForeignKey("facturaId_Factura");
-
                     b.Navigation("Cliente");
-
-                    b.Navigation("factura");
                 });
 
             modelBuilder.Entity("Proyecto_EC1.Entitys.Producto", b =>
