@@ -26,9 +26,8 @@ namespace Proyecto_EC1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("desp_catg")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
 
                     b.Property<string>("nom_catg")
                         .IsRequired()
@@ -40,38 +39,6 @@ namespace Proyecto_EC1.Migrations
                     b.ToTable("Categoria");
                 });
 
-            modelBuilder.Entity("Proyecto_EC1.Entitys.Cita", b =>
-                {
-                    b.Property<int>("id_cita")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ClienteId_Cliente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id_Cliente")
-                        .HasColumnType("int");
-
-                    b.Property<string>("direccion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("distrito")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("fecha")
-                        .HasColumnType("int");
-
-                    b.HasKey("id_cita");
-
-                    b.HasIndex("ClienteId_Cliente");
-
-                    b.ToTable("Cita");
-                });
-
             modelBuilder.Entity("Proyecto_EC1.Entitys.Cliente", b =>
                 {
                     b.Property<int>("Id_Cliente")
@@ -79,12 +46,12 @@ namespace Proyecto_EC1.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Id_Usuario")
-                        .HasColumnType("int");
-
                     b.Property<string>("apellido")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
 
                     b.Property<int>("fech_nac")
                         .HasColumnType("int");
@@ -93,9 +60,6 @@ namespace Proyecto_EC1.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("ruc")
-                        .HasColumnType("int");
 
                     b.Property<int>("tip_doc")
                         .HasColumnType("int");
@@ -128,17 +92,14 @@ namespace Proyecto_EC1.Migrations
                     b.Property<int>("cant")
                         .HasColumnType("int");
 
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
+
                     b.Property<float>("precio")
                         .HasColumnType("real");
 
-                    b.Property<string>("producto")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float>("subtotal")
                         .HasColumnType("real");
-
-                    b.Property<int>("und")
-                        .HasColumnType("int");
 
                     b.HasKey("Id_dped");
 
@@ -159,14 +120,11 @@ namespace Proyecto_EC1.Migrations
                     b.Property<int?>("ClienteId_Cliente")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id_cliente")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("Id_Cliente")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Id_factura")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
 
                     b.Property<int>("fech_entr")
                         .HasColumnType("int");
@@ -174,13 +132,7 @@ namespace Proyecto_EC1.Migrations
                     b.Property<int>("fech_ped")
                         .HasColumnType("int");
 
-                    b.Property<int>("hor_entr")
-                        .HasColumnType("int");
-
                     b.Property<int>("hor_ped")
-                        .HasColumnType("int");
-
-                    b.Property<int>("num_ped")
                         .HasColumnType("int");
 
                     b.Property<string>("obs")
@@ -205,6 +157,9 @@ namespace Proyecto_EC1.Migrations
 
                     b.Property<int>("Id_catg")
                         .HasColumnType("int");
+
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
 
                     b.Property<string>("nomb_prod")
                         .IsRequired()
@@ -240,18 +195,12 @@ namespace Proyecto_EC1.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("estado")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id_Usuario");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Proyecto_EC1.Entitys.Cita", b =>
-                {
-                    b.HasOne("Proyecto_EC1.Entitys.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId_Cliente");
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("Proyecto_EC1.Entitys.Detalle_pedido", b =>

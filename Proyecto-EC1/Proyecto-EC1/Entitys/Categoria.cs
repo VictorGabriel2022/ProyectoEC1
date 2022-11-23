@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-
+﻿using Microsoft.VisualBasic;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Proyecto_EC1.Entitys
@@ -9,13 +9,14 @@ namespace Proyecto_EC1.Entitys
         [Key]
         public int Id_catg { get; set; }
         [Required]
-        //definimos el tamaño del campo
-        [StringLength(maximumLength: 100,
-            ErrorMessage = "Se tiene que ingresar un nombre de un producto")]
-        public string nom_catg{ get; set; }
+        [StringLength(
+         maximumLength: 100,
+         ErrorMessage = "Se tiene que ingresar un nombre"
+         )]
+        public string nom_catg { get; set; }
         [Required]
-        public string desp_catg { get; set; }
-
+        public bool estado { get; set; }
         
+
     }
 }

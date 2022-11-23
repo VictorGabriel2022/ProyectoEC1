@@ -10,28 +10,21 @@ namespace Proyecto_EC1.Entitys
         public int Id_dped { get; set; }
         //definimos valores no nulos
         [Required]
-        //definimos el tamaño del campo
-        [StringLength(
-        maximumLength: 100,
-        ErrorMessage = "Se tiene que ingresar un pedido"
-        )]
         public int Id_pedido { get; set; }
         [Required]
         public int Id_prod { get; set; }
-
-        public string producto { get; set; }
         [Required]
         public int cant { get; set; }
-        [Required]
-        public int und { get; set; }
 
         public float precio { get; set; }
 
         public float subtotal { get; set; }
+        [Required]
+        public bool estado { get; set; }
 
-        [Required]
+   
         public Producto Producto { get; set; }
-        [Required]
+      
         public Pedido Pedido{ get; set; }
        
 

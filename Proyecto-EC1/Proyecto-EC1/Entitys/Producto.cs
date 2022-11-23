@@ -27,6 +27,8 @@ namespace Proyecto_EC1.Entitys
         public int stock_prod { get; set; }
         [Required]
         public int Id_catg { get; set; }
+        [Required]
+        public bool estado { get; set; }
 
         public Categoria Categoria { get; set; }
 

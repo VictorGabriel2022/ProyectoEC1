@@ -10,7 +10,7 @@ namespace Proyecto_EC1
         }
         //configurando las tablas de la base datos
         public DbSet<Producto> Producto { get; set; }
-        public DbSet<Cita> Cita { get; set; }
+
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Detalle_pedido> Detalle_pedido { get; set; }

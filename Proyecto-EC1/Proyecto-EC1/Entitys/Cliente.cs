@@ -15,12 +15,12 @@ namespace Proyecto_EC1.Entitys
         [Required]
         public string apellido { get; set; }
         public int fech_nac { get; set; }
-        public int ruc { get; set; } 
+   
         public int tip_doc { get; set; }
         [Required]
-        public int Id_Usuario { get; set; }
+        public bool estado { get; set; }
 
-        
+
 
     }
 }

@@ -13,6 +13,8 @@ namespace Proyecto_EC1.Entitys
         public string email { get; set; }
         [Required]
         public string Contraseña { get; set; }
+        [Required]
+        public bool estado { get; set; }
 
     }
 }

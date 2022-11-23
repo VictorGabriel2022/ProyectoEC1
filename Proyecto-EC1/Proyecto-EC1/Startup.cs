@@ -31,6 +31,19 @@ namespace Proyecto_EC1
             services.AddControllers();
             services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("defaultConnection") ) );
+
+            services.AddCors(
+                  options => {
+                      var frontendurl = Configuration
+                      .GetValue<string>("frontend_url");
+                      options.AddDefaultPolicy(builder =>
+                      {
+                          builder.WithOrigins(frontendurl)
+                          .AllowAnyMethod().AllowAnyHeader();
+                      });
+                  });
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proyecto_EC1", Version = "v1" });
@@ -50,6 +63,8 @@ namespace Proyecto_EC1
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
