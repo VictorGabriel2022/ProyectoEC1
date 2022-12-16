@@ -64,16 +64,19 @@ namespace Proyecto_EC1.Controllers
 
 
         [HttpDelete("{id:int}")]
-        public async Task<ActionResult> delete(Cliente a, int id)
+        public async Task<ActionResult> delete(int id)
         {
-            if (a.Id_Cliente != id)
-            {
-                return BadRequest("No se encuentra el codigo correspondiente");
-            }
 
+            var existe = await context.Cliente.AnyAsync(x => x.Id_Cliente == id);
+            if (!existe)
+            {
+                return NotFound();
+            }
+            var autor = await context.Cliente.FirstOrDefaultAsync(x => x.Id_Cliente == id);
+            autor.estado = false;
+            context.Update(autor);
             await context.SaveChangesAsync();
             return Ok();
-
         }
     }
 }

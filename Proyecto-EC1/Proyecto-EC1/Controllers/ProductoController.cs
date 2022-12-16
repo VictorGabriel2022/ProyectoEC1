@@ -25,7 +25,7 @@ namespace Proyecto_EC1.Controllers
             return await context.Producto.Include(x => x.Categoria).ToListAsync();
         }
 
-      
+
 
         [HttpPost]
         public async Task<ActionResult> add(Producto l)
@@ -74,9 +74,9 @@ namespace Proyecto_EC1.Controllers
             {
                 return NotFound();
             }
-            var libro = await context.Producto.
-                FirstOrDefaultAsync(x => x.Id_prod == id);
-            context.Update(libro);
+            var autor = await context.Producto.FirstOrDefaultAsync(x => x.Id_prod == id);
+            autor.estado = false;
+            context.Update(autor);
             await context.SaveChangesAsync();
             return Ok();
         }

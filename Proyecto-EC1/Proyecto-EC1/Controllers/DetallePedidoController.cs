@@ -76,14 +76,14 @@ namespace Proyecto_EC1.Controllers
         public async Task<ActionResult> delete(int id)
         {
 
-            var existe = await context.Producto.AnyAsync(x => x.Id_prod == id);
+            var existe = await context.Detalle_pedido.AnyAsync(x => x.Id_dped == id);
             if (!existe)
             {
                 return NotFound();
             }
-            var libro = await context.Producto.
-                FirstOrDefaultAsync(x => x.Id_prod == id);
-            context.Update(libro);
+            var autor = await context.Detalle_pedido.FirstOrDefaultAsync(x => x.Id_dped == id);
+            autor.estado = false;
+            context.Update(autor);
             await context.SaveChangesAsync();
             return Ok();
         }

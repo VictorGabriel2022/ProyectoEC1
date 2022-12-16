@@ -64,17 +64,21 @@ namespace Proyecto_EC1.Controllers
         }
 
 
+
         [HttpDelete("{id:int}")]
-        public async Task<ActionResult> delete(Producto a, int id)
+        public async Task<ActionResult> delete(int id)
         {
-            if (a.Id_prod != id)
+
+            var existe = await context.Categoria.AnyAsync(x => x.Id_catg == id);
+            if (!existe)
             {
-                return BadRequest("No se encuentra el codigo correspondiente");
+                return NotFound();
             }
-        
+            var autor = await context.Categoria.FirstOrDefaultAsync(x => x.Id_catg == id);
+            autor.estado = false;
+            context.Update(autor);
             await context.SaveChangesAsync();
             return Ok();
-
         }
     }
 }
