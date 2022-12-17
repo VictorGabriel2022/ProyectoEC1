@@ -12,11 +12,11 @@ namespace Proyecto_EC1.Entitys
         [Required]
         public int Id_Cliente { get; set; }
 
-        public int fech_ped { get; set; }
+        public string fech_ped { get; set; }
 
-        public int hor_ped { get; set; }
+        public string hor_ped { get; set; }
 
-        public int fech_entr { get; set; }
+        public string fech_entr { get; set; }
 
         public string obs { get; set; }
         [Required]

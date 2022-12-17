@@ -10,7 +10,7 @@ using Proyecto_EC1;
 namespace Proyecto_EC1.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20221123025445_Inicial")]
+    [Migration("20221217015320_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,8 +55,8 @@ namespace Proyecto_EC1.Migrations
                     b.Property<bool>("estado")
                         .HasColumnType("bit");
 
-                    b.Property<int>("fech_nac")
-                        .HasColumnType("int");
+                    b.Property<string>("fech_nac")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nombre")
                         .IsRequired()
@@ -79,7 +79,6 @@ namespace Proyecto_EC1.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Id_pedido")
-                        .HasMaxLength(100)
                         .HasColumnType("int");
 
                     b.Property<int>("Id_prod")
@@ -128,14 +127,14 @@ namespace Proyecto_EC1.Migrations
                     b.Property<bool>("estado")
                         .HasColumnType("bit");
 
-                    b.Property<int>("fech_entr")
-                        .HasColumnType("int");
+                    b.Property<string>("fech_entr")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("fech_ped")
-                        .HasColumnType("int");
+                    b.Property<string>("fech_ped")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("hor_ped")
-                        .HasColumnType("int");
+                    b.Property<string>("hor_ped")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("obs")
                         .HasColumnType("nvarchar(max)");

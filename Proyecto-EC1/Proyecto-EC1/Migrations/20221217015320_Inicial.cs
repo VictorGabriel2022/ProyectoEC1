@@ -28,7 +28,7 @@ namespace Proyecto_EC1.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nombre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    fech_nac = table.Column<int>(type: "int", nullable: false),
+                    fech_nac = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     tip_doc = table.Column<int>(type: "int", nullable: false),
                     estado = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -83,9 +83,9 @@ namespace Proyecto_EC1.Migrations
                     Id_pedido = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Id_Cliente = table.Column<int>(type: "int", nullable: false),
-                    fech_ped = table.Column<int>(type: "int", nullable: false),
-                    hor_ped = table.Column<int>(type: "int", nullable: false),
-                    fech_entr = table.Column<int>(type: "int", nullable: false),
+                    fech_ped = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    hor_ped = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    fech_entr = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     obs = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     estado = table.Column<bool>(type: "bit", nullable: false),
                     ClienteId_Cliente = table.Column<int>(type: "int", nullable: true)
@@ -107,7 +107,7 @@ namespace Proyecto_EC1.Migrations
                 {
                     Id_dped = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Id_pedido = table.Column<int>(type: "int", maxLength: 100, nullable: false),
+                    Id_pedido = table.Column<int>(type: "int", nullable: false),
                     Id_prod = table.Column<int>(type: "int", nullable: false),
                     cant = table.Column<int>(type: "int", nullable: false),
                     precio = table.Column<float>(type: "real", nullable: false),

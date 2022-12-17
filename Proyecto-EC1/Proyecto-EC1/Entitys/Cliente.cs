@@ -14,7 +14,7 @@ namespace Proyecto_EC1.Entitys
         public string nombre { get; set; }
         [Required]
         public string apellido { get; set; }
-        public int fech_nac { get; set; }
+        public string fech_nac { get; set; }
    
         public int tip_doc { get; set; }
         [Required]
